@@ -10,7 +10,7 @@ import {
 
 import styles from "./page.module.css";
 
-export default function Home() {
+const Home = () => {
   const count = useSelector((state: RootState) => state.counter.value);
 
   const dispatch = useDispatch();
@@ -23,4 +23,6 @@ export default function Home() {
       <button onClick={() => dispatch(incrementByAmount(2))}>+ 2</button>
     </main>
   );
-}
+};
+
+export default Home;
