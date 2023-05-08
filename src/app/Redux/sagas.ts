@@ -2,6 +2,7 @@ import { call, put, all } from "redux-saga/effects";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 
 import CounterSaga from "./Features/counter/saga";
+import AuthSaga from "./Features/auth/saga";
 
 export function* apiCall({ url, method, data }: AxiosRequestConfig) {
   try {
@@ -18,5 +19,5 @@ export function* apiCall({ url, method, data }: AxiosRequestConfig) {
 }
 
 export function* rootSaga() {
-  yield all([CounterSaga()]);
+  yield all([CounterSaga(), AuthSaga()]);
 }
