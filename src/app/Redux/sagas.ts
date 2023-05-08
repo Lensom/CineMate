@@ -7,7 +7,7 @@ import AuthSaga from "./Features/auth/saga";
 export function* apiCall({ url, method, data }: AxiosRequestConfig) {
   try {
     const response: AxiosResponse = yield call(axios.request, {
-      url,
+      url: `http://localhost:4444/${url}`,
       method,
       data,
     });

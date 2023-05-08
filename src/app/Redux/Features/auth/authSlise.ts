@@ -53,6 +53,6 @@ export const authSlice = createSlice({
   },
 });
 
-export const { loginRequest, loginSuccess, loginError } = authSlice.actions;
+export const { loginRequest, registrationRequest } = authSlice.actions;
 
 export default authSlice.reducer;

@@ -1,9 +1,15 @@
 import Link from "next/link";
 import { Button, Checkbox, Form, Input } from "antd";
 
+import { useDispatch } from "react-redux";
+import { loginRequest } from "../../../app/Redux/Features/auth/authSlise";
+
 const Login: React.FC = () => {
+  const dispatch = useDispatch();
+
   const onFinish = (values: any) => {
     console.log("Success:", values);
+    dispatch(loginRequest(values));
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -22,9 +28,9 @@ const Login: React.FC = () => {
       autoComplete="off"
     >
       <Form.Item
-        label="Ім'я користувача"
-        name="username"
-        rules={[{ required: true, message: "Введіть ім'я користувача" }]}
+        label="E-mail"
+        name="email"
+        rules={[{ required: true, message: "Введіть E-mail користувача" }]}
       >
         <Input />
       </Form.Item>

@@ -1,9 +1,14 @@
 import Link from "next/link";
 import { Button, Checkbox, Form, Input } from "antd";
+import { useDispatch } from "react-redux";
+import { registrationRequest } from "../../../app/Redux/Features/auth/authSlise";
 
 const Registration: React.FC = () => {
+  const dispatch = useDispatch();
+
   const onFinish = (values: any) => {
-    console.log("Success:", values);
+    const { confirm, remember, ...userData } = values;
+    dispatch(registrationRequest(userData));
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -32,7 +37,7 @@ const Registration: React.FC = () => {
 
       <Form.Item
         label="E-mail"
-        name="username"
+        name="email"
         rules={[{ required: true, message: "Введіть Ваш e-mail" }]}
       >
         <Input />

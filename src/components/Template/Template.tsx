@@ -100,7 +100,7 @@ const Template = ({ children }: { children: React.ReactNode }) => {
             }}
           />
           <Button type="primary">
-            <Link href="/login">Реєстрація</Link>
+            <Link href="/login">Увійти</Link>
           </Button>
         </Header>
         <Content style={{ margin: "0 16px" }}>
@@ -118,9 +118,7 @@ const Template = ({ children }: { children: React.ReactNode }) => {
             {children}
           </div>
         </Content>
-        <Footer style={{ textAlign: "center" }}>
-          Ant Design ©2023 Created by Ant UED
-        </Footer>
+        <Footer style={{ textAlign: "center" }}>Footer</Footer>
       </Layout>
     </Layout>
   );

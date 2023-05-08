@@ -13,34 +13,32 @@ interface ApiResponse {
 }
 
 function* login({ payload }: any) {
-  console.log(payload);
   try {
     const data: ApiResponse = yield call(apiCall, {
-      url: "https://api.publicapis.org/entries",
-      method: "get",
-      payload,
+      url: "auth/login",
+      method: "post",
+      data: payload,
     });
-    yield put({ type: "loginSuccess", payload: data });
+    yield put({ type: "auth/loginSuccess", payload: data });
   } catch (error) {
-    yield put({ type: "loginError", payload: error });
+    yield put({ type: "auth/loginError", payload: error });
   }
 }
 
 function* registration({ payload }: any) {
-  console.log(payload);
   try {
     const data: ApiResponse = yield call(apiCall, {
-      url: "https://api.publicapis.org/entries",
-      method: "get",
-      payload,
+      url: "auth/register",
+      method: "post",
+      data: payload,
     });
-    yield put({ type: "registrationSuccess", payload: data });
+    yield put({ type: "auth/registrationSuccess", payload: data });
   } catch (error) {
-    yield put({ type: "registrationError", payload: error });
+    yield put({ type: "auth/registrationError", payload: error });
   }
 }
 
 export default function* watchSaga() {
-  yield takeEvery("auth/login", login);
-  yield takeEvery("auth/registration", registration);
+  yield takeEvery("auth/loginRequest", login);
+  yield takeEvery("auth/registrationRequest", registration);
 }
