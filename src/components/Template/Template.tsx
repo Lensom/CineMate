@@ -80,7 +80,15 @@ const Template = ({ children }: { children: React.ReactNode }) => {
         />
       </Sider>
       <Layout className="site-layout">
-        <Header style={{ padding: 0, background: colorBgContainer }}>
+        <Header
+          style={{
+            padding: 10,
+            background: colorBgContainer,
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
           <Button
             type="text"
             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -91,6 +99,9 @@ const Template = ({ children }: { children: React.ReactNode }) => {
               height: 64,
             }}
           />
+          <Button type="primary">
+            <Link href="/login">Реєстрація</Link>
+          </Button>
         </Header>
         <Content style={{ margin: "0 16px" }}>
           <Breadcrumb style={{ margin: "16px 0" }}>
