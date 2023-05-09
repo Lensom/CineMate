@@ -1,0 +1,28 @@
+[
+    {
+      "slug": "/registration",
+      "courseTitle": "Реєстрація",
+      "breadcrumbs": [
+        {
+          "title": "Головна",
+          "url": "/"
+        },
+        {
+          "title": "Реєстрація"
+        }
+      ]
+    },
+    {
+        "slug": "/login",
+        "courseTitle": "Увійти",
+        "breadcrumbs": [
+          {
+            "title": "Головна",
+            "url": "/"
+          },
+          {
+            "title": "Увійти"
+          }
+        ]
+      }
+  ]

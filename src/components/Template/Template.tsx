@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { GetServerSideProps, NextPage } from "next";
 
 import {
   DesktopOutlined,
@@ -15,8 +16,21 @@ import {
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Breadcrumb, Layout, Menu, theme, Button } from "antd";
+import Breadcrumbs, { CrumbItem } from "./components/Breadcrumbs";
+import db from '../../data/db.json';
+import { usePathname } from 'next/navigation';
 
 const { Header, Content, Footer, Sider } = Layout;
+
+type BreadcrumbData = { // data returned by server
+  text: string;
+  url: string;
+};
+// data for this page that we're expecting from backend
+type Props = {
+  breadcrumbs: BreadcrumbData[];
+  courseTitle: string;
+};
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -49,11 +63,29 @@ const items: MenuItem[] = [
   ]),
 ];
 
-const Template = ({ children }: { children: React.ReactNode }) => {
+
+
+const Template = ({ children, breadcrumbs }: { children: React.ReactNode, breadcrumbs: CrumbItem[] }) => {
   const [collapsed, setCollapsed] = useState(false);
+  const [breads, setBreads] = useState([])
+  const path = usePathname();
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+
+
+  const breadCrumbsData: CrumbItem[] = breadcrumbs?.map((c) => {
+    return {
+      label: c.text,
+      path: c.url,
+    };
+  });
+
+  useEffect(() => {
+    const data = db.find((page) => page.slug === path);
+    console.log(data)
+    setBreads(data?.breadcrumbs)
+  }, [path])
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
@@ -104,10 +136,9 @@ const Template = ({ children }: { children: React.ReactNode }) => {
           </Button>
         </Header>
         <Content style={{ margin: "0 16px" }}>
-          <Breadcrumb style={{ margin: "16px 0" }}>
-            <Breadcrumb.Item>User</Breadcrumb.Item>
-            <Breadcrumb.Item>Bill</Breadcrumb.Item>
-          </Breadcrumb>
+        <Breadcrumbs
+          items={breads}
+        />
           <div
             style={{
               padding: 24,
@@ -125,3 +156,21 @@ const Template = ({ children }: { children: React.ReactNode }) => {
 };
 
 export default Template;
+
+// export const getServerSideProps: GetServerSideProps<Props> = async (ctx) => {
+//   const slug = ctx.params?.slug;
+//   console.log(ctx)
+//   // simulate a call to the backend server here to get the data
+//   const data = db.find((page) => page.slug === slug);
+//   if (!data) {
+//     return {
+//       notFound: true,
+//     };
+//   }
+//   return {
+//     props: {
+//       breadcrumbs: data.breadcrumbs || [],
+//       courseTitle: data.courseTitle,
+//     },
+//   };
+// };
