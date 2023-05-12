@@ -6,9 +6,13 @@ import Image from "next/image";
 import { usePathname } from 'next/navigation';
 import { Montserrat } from "next/font/google";
 
+import { useSelector } from 'react-redux';
+
 import type { MenuProps } from "antd";
 import { Layout, Menu, theme, Button, ConfigProvider } from "antd";
 import Breadcrumbs from "./components/Breadcrumbs";
+
+import type { RootState } from "../../app/Redux/store";
 
 import db from '../../data/db.json';
 
@@ -22,6 +26,7 @@ import {
 } from "@ant-design/icons";
 
 const { Header, Content, Footer, Sider } = Layout;
+
 
 const montserrat = Montserrat({ subsets: ["cyrillic"] });
 
@@ -73,6 +78,9 @@ const Template = ({ children }: { children: React.ReactNode, }) => {
   const {
     token: { colorBgContainer }
   } = theme.useToken();
+
+  const { isAuth } = useSelector((state: RootState) => state.auth);
+
 
   useEffect(() => {
     const data = db.find((page) => page.slug === path);
@@ -140,7 +148,7 @@ const Template = ({ children }: { children: React.ReactNode, }) => {
               }}
             />
             <Button type="primary">
-              <Link href="/login">Увійти</Link>
+              {isAuth ? <Link href="/profile">Профіль</Link> : <Link href="/login">Увійти</Link>}
             </Button>
           </Header>
           <Content style={{ margin: "0 16px" }}>

@@ -16,8 +16,12 @@ function* login({ payload }: any) {
       data: payload,
     },
     );
+
     setCookie('cmAccessToken', data.token)
+
     yield put({ type: "auth/loginSuccess", payload: data });
+    yield put({ type: "user/userInfoSuccess", payload: data });
+
   } catch (error) {
     yield put({ type: "auth/loginError", payload: error });
   }
@@ -30,9 +34,12 @@ function* registration({ payload }: any) {
       method: "post",
       data: payload,
     });
+
     setCookie('cmAccessToken', data.token)
-    console.log(data)
+
     yield put({ type: "auth/registrationSuccess", payload: data });
+    yield put({ type: "user/userInfoSuccess", payload: data });
+
   } catch (error) {
     yield put({ type: "auth/registrationError", payload: error });
   }

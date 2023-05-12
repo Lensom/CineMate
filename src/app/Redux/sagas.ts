@@ -1,13 +1,32 @@
 import { call, put, all } from "redux-saga/effects";
+import { getCookie } from 'cookies-next';
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 
-import CounterSaga from "./Features/counter/saga";
 import AuthSaga from "./Features/auth/saga";
+import UserSaga from './Features/user/saga';
+
+const apiClient = axios.create({
+  baseURL: 'http://localhost:4444/',
+});
+
+apiClient.interceptors.request.use(
+  (config) => {
+    const token = getCookie('cmAccessToken');
+
+    if (token) {
+      config.headers.Authorization = "Bearer " + token;
+    }
+    return config;
+  },
+  (error) => {
+    Promise.reject(error);
+  }
+);
 
 export function* apiCall({ url, method, data }: AxiosRequestConfig) {
   try {
-    const response: AxiosResponse = yield call(axios.request, {
-      url: `http://localhost:4444/${url}`,
+    const response: AxiosResponse = yield call(apiClient.request, {
+      url,
       method,
       data,
     });
@@ -19,5 +38,5 @@ export function* apiCall({ url, method, data }: AxiosRequestConfig) {
 }
 
 export function* rootSaga() {
-  yield all([CounterSaga(), AuthSaga()]);
+  yield all([AuthSaga(), UserSaga()]);
 }

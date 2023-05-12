@@ -2,26 +2,16 @@
 
 import { createSlice } from "@reduxjs/toolkit";
 
-interface IUserInterface {
-  name: string;
-  email: string;
-  token: string;
-}
-
 export interface AuthState {
-  user: IUserInterface;
   loading: boolean;
   error: string;
+  isAuth: boolean;
 }
 
 const initialState: AuthState = {
-  user: {
-    name: "",
-    email: "",
-    token: "",
-  },
   loading: false,
   error: "",
+  isAuth: false
 };
 
 export const authSlice = createSlice({
@@ -31,9 +21,9 @@ export const authSlice = createSlice({
     registrationRequest: (state) => {
       state.loading = true;
     },
-    registrationSuccess: (state, { payload }) => {
-      state.user = payload;
+    registrationSuccess: (state) => {
       state.loading = false;
+      state.isAuth = true;
     },
     registrationError: (state, { payload }) => {
       state.error = payload;
@@ -42,14 +32,17 @@ export const authSlice = createSlice({
     loginRequest: (state) => {
       state.loading = true;
     },
-    loginSuccess: (state, { payload }) => {
-      state.user = payload;
+    loginSuccess: (state,) => {
       state.loading = false;
+      state.isAuth = true;
     },
     loginError: (state, { payload }) => {
       state.error = payload;
       state.loading = false;
     },
+    setIsAuth: (state) => {
+      state.isAuth = true;
+    }
   },
 });
 

@@ -20,9 +20,11 @@ export default function RootLayout({
   return (
     <html lang="ua">
       <body>
-        <Template>
-          <Providers>{children}</Providers>
-        </Template>
+        <Providers>
+          <Template>
+            {children}
+          </Template>
+        </Providers>
       </body>
     </html>
   );
