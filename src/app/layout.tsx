@@ -1,10 +1,8 @@
-import "../styles/index.scss";
 
-
-import Template from "../components/Template/Template";
-
+import Template from "@/components/Template/Template";
 import { Providers } from "./Redux/provider";
 
+import "../styles/index.scss";
 
 export const metadata = {
   title: "CineMate",

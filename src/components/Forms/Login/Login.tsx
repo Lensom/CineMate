@@ -1,12 +1,17 @@
+import { FC } from 'react'
+import { useDispatch } from "react-redux";
+
 import Link from "next/link";
+
 import { Button, Checkbox, Form, Input, Typography } from "antd";
 
-import { useDispatch } from "react-redux";
-import { loginRequest } from "../../../app/Redux/Features/auth/authSlise";
+import { loginRequest } from "features/auth/authSlise";
+
+import styles from './login.module.scss';
 
 const { Title } = Typography;
 
-const Login: React.FC = () => {
+const Login: FC = () => {
   const dispatch = useDispatch();
 
   const onFinish = (values: any) => {
@@ -20,16 +25,15 @@ const Login: React.FC = () => {
 
   return (
     <>
-      <Title style={{ textAlign: 'center', margin: '0 0 30px' }}>Увійти</Title>
+      <Title className='form-title'>Увійти</Title>
       <Form
-        name="basic"
-        labelCol={{ span: 8 }}
-        wrapperCol={{ span: 16 }}
-        style={{ maxWidth: 600, margin: '0 auto' }}
+        name="login"
         initialValues={{ remember: true }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
+        className='form-wrapper'
+        layout="vertical"
       >
         <Form.Item
           label="E-mail"
@@ -50,16 +54,15 @@ const Login: React.FC = () => {
         <Form.Item
           name="remember"
           valuePropName="checked"
-          wrapperCol={{ offset: 8, span: 16 }}
         >
           <Checkbox>Запам&apos;ятати</Checkbox>
         </Form.Item>
 
-        <Form.Item wrapperCol={{ offset: 8, span: 16 }} style={{ textAlign: 'center' }}>
-          <Button type="primary" htmlType="submit" >
+        <Form.Item className='form-submit'>
+          <Button type="primary" htmlType="submit">
             Увійти
           </Button>
-          <Title level={5} style={{ textAlign: 'center', margin: '20px 0 0' }}> Немає аккаунту?<Link href="/registration" style={{ marginLeft: 5 }}>Зареєструватись</Link></Title>
+          <Title level={5} className="form-subtitle"> Немає аккаунту?<Link href="/registration" style={{ marginLeft: 5 }}>Зареєструватись</Link></Title>
         </Form.Item>
       </Form></>
   );

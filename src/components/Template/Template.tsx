@@ -1,32 +1,30 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from 'next/navigation';
 import { Montserrat } from "next/font/google";
 
-import { useSelector } from 'react-redux';
 
-import type { MenuProps } from "antd";
-import { Layout, Menu, theme, Button, ConfigProvider } from "antd";
+import { Layout, theme, Button, ConfigProvider } from "antd";
+import { getCookie } from 'cookies-next';
+
+import type { RootState } from "@/app/Redux/store";
+import db from '@/data/db.json';
+
+import { userInfoRequest } from "features/user/userSlice";
 import Breadcrumbs from "./components/Breadcrumbs";
-
-import type { RootState } from "../../app/Redux/store";
-
-import db from '../../data/db.json';
+import Menu from './components/Menu';
 
 import {
-  FileOutlined,
-  PieChartOutlined,
-  TeamOutlined,
-  UserOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
 } from "@ant-design/icons";
 
 const { Header, Content, Footer, Sider } = Layout;
-
 
 const montserrat = Montserrat({ subsets: ["cyrillic"] });
 
@@ -37,37 +35,6 @@ export type CrumbItem = {
 export type BreadcrumbsProps = {
   items: CrumbItem[];
 };
-
-type MenuItem = Required<MenuProps>["items"][number];
-
-function getItem(
-  label: React.ReactNode,
-  key: React.Key,
-  icon?: React.ReactNode,
-  children?: MenuItem[]
-): MenuItem {
-  return {
-    key,
-    icon,
-    children,
-    label,
-  } as MenuItem;
-}
-
-const items: MenuItem[] = [
-  getItem("Мій профіль", "1", <FileOutlined />),
-  getItem("Мої списки", "2", <PieChartOutlined />),
-  getItem("Мої оцінки", "sub1", <UserOutlined />, [
-    getItem("Фільми", "3"),
-    getItem("Серіали", "4"),
-    getItem("TV shows", "5"),
-  ]),
-  getItem("Переглянути пізніше", "sub2", <TeamOutlined />, [
-    getItem("Фільми", "6"),
-    getItem("Серіали", "7"),
-    getItem("TV shows", "8"),
-  ]),
-];
 
 
 
@@ -86,6 +53,16 @@ const Template = ({ children }: { children: React.ReactNode, }) => {
     const data = db.find((page) => page.slug === path);
     setBreads(data?.breadcrumbs)
   }, [path])
+
+  const dispatch = useDispatch();
+  const userToken = getCookie('cmAccessToken') as void;
+
+  useEffect(() => {
+    if (String(userToken)) {
+      dispatch(userInfoRequest(userToken))
+    }
+
+  }, [userToken])
 
   return (
     <ConfigProvider theme={{
@@ -120,12 +97,7 @@ const Template = ({ children }: { children: React.ReactNode, }) => {
               />
             </Link>
           </div>
-          <Menu
-            theme="dark"
-            defaultSelectedKeys={["1"]}
-            mode="inline"
-            items={items}
-          />
+          <Menu />
         </Sider>
         <Layout className="site-layout">
           <Header

@@ -20,17 +20,5 @@
     "**/web/build": true, // will change frequently by build command
     "**/admin/node_modules": true
   },
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "[scss]": {
-    "editor.defaultFormatter": "vscode.css-language-features"
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
-  },
-  "[json]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  }
+  "editor.defaultFormatter": "vscode.typescript-language-features",
 }

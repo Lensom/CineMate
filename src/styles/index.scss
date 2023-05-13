@@ -81,3 +81,22 @@ img {
   max-height: 100%;
 }
 
+
+.form {
+  &-title {
+    text-align: center;
+    margin: 0 0 30px;
+  }
+  &-wrapper {
+    max-width: 400px;
+    margin: 50px auto !important;
+  }
+  &-submit {
+    text-align: center;
+  }
+  &-subtitle {
+    text-align: center;
+    margin: 20px 0 0;
+  }
+}
+

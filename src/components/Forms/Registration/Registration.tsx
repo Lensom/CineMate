@@ -1,14 +1,17 @@
+import { useState } from 'react'
 import Link from "next/link";
 import { Button, Checkbox, Form, Input, Typography } from "antd";
 import { useDispatch } from "react-redux";
-import { registrationRequest } from "../../../app/Redux/Features/auth/authSlise";
+import { registrationRequest } from "features/auth/authSlise";
+
+type LayoutType = Parameters<typeof Form>[0]['layout'];
 
 import styles from './registration.module.scss';
 
 const { Title } = Typography;
 
 const Registration: React.FC = () => {
-
+  const [formLayout, setFormLayout] = useState<LayoutType>('horizontal');
   const dispatch = useDispatch();
 
   const onFinish = (values: any) => {
@@ -22,16 +25,15 @@ const Registration: React.FC = () => {
 
   return (
     <>
-      <Title style={{ textAlign: 'center', margin: '0 0 30px' }}>Реєстрація</Title>
+      <Title className='form-title'>Реєстрація</Title>
       <Form
         name="basic"
-        labelCol={{ span: 8 }}
-        wrapperCol={{ span: 16 }}
-        style={{ maxWidth: 600, margin: '0 auto' }}
+        className='form-wrapper'
         initialValues={{ remember: true }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
+        layout="vertical"
       >
         <Form.Item
           label="Ім'я користувача"
@@ -92,16 +94,15 @@ const Registration: React.FC = () => {
         <Form.Item
           name="remember"
           valuePropName="checked"
-          wrapperCol={{ offset: 8, span: 16 }}
         >
           <Checkbox>Запам&apos;ятати</Checkbox>
         </Form.Item>
 
-        <Form.Item wrapperCol={{ offset: 8, span: 16 }} style={{ textAlign: 'center' }}>
+        <Form.Item className='form-submit'>
           <Button type="primary" htmlType="submit">
             Зареєструватись
           </Button>
-          <Title level={5} style={{ textAlign: 'center', margin: '20px 0 0' }}>Є аккаунт? <Link href="/login" style={{ marginLeft: 5 }}>Увійти</Link></Title>
+          <Title level={5} className="form-subtitle">Є аккаунт? <Link href="/login" style={{ marginLeft: 5 }}>Увійти</Link></Title>
         </Form.Item>
       </Form>
     </>
