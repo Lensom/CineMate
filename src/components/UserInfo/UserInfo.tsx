@@ -1,6 +1,6 @@
 import { Col, Row, Statistic, Descriptions } from 'antd';
 import { useSelector } from 'react-redux';
-import type { RootState } from "../../app/Redux/store";
+import type { RootState } from "@/app/Redux/store";
 
 
 const UserInfo = () => {

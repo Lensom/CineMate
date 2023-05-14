@@ -56,7 +56,7 @@ export function* apiCall({ url, method, data }: AxiosRequestConfig) {
 export function* apiMovieCall({ url, method, data }: AxiosRequestConfig) {
   try {
     const response: AxiosResponse = yield call(ApiMovieClient.request, {
-      url,
+      url: `${url}?language=uk`,
       method,
       data,
     });

@@ -2,24 +2,33 @@
 
 import { createSlice } from "@reduxjs/toolkit";
 
-interface IUserInterface {
-  name: string;
-  email: string;
-  token: string;
+interface IPopular {
+  adult: boolean;
+  backdrop_path: string;
+  id: number;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  release_date: string;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
 }
 
+
 export interface AuthState {
-  user: IUserInterface;
+  populars: IPopular[];
+  ratings: IPopular[];
   loading: boolean;
   error: string;
 }
 
 const initialState: AuthState = {
-  user: {
-    name: "",
-    email: "",
-    token: "",
-  },
+  populars: [],
+  ratings: [],
   loading: false,
   error: "",
 };
@@ -32,16 +41,27 @@ export const moviesSlice = createSlice({
       state.loading = false;
     },
     popularMoviesSuccess: (state, { payload }) => {
-      state.user = payload;
+      state.populars = payload.results;
       state.loading = false;
     },
     popularMoviesError: (state, { payload }) => {
+      state.error = payload;
+      state.loading = false;
+    },
+    ratingMoviesRequest: (state) => {
+      state.loading = false;
+    },
+    ratingMoviesSuccess: (state, { payload }) => {
+      state.ratings = payload.results;
+      state.loading = false;
+    },
+    ratingMoviesError: (state, { payload }) => {
       state.error = payload;
       state.loading = false;
     }
   },
 });
 
-export const { popularMoviesRequest } = moviesSlice.actions;
+export const { popularMoviesRequest, ratingMoviesRequest } = moviesSlice.actions;
 
 export default moviesSlice.reducer;

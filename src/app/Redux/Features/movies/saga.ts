@@ -20,6 +20,20 @@ function* fetchPopularMovies({ payload }: any) {
   }
 }
 
+function* fetchRatingMovies({ payload }: any) {
+  try {
+    const data: ApiAuthResponse = yield call(apiMovieCall, {
+      url: "movie/top_rated",
+      method: "get",
+      data: payload,
+    });
+    yield put({ type: "movies/ratingMoviesSuccess", payload: data });
+  } catch (error) {
+    yield put({ type: "movies/ratingMoviesError", payload: error });
+  }
+}
+
 export default function* watchSaga() {
   yield takeEvery("movies/popularMoviesRequest", fetchPopularMovies);
+  yield takeEvery("movies/ratingMoviesRequest", fetchRatingMovies);
 }
