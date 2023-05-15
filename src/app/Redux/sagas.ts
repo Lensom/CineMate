@@ -11,7 +11,10 @@ const apiClient = axios.create({
 });
 
 export const ApiMovieClient = axios.create({
-  baseURL: 'https://api.themoviedb.org/3/'
+  baseURL: 'https://api.themoviedb.org/3/',
+  params: {
+    language: 'uk'
+  }
 })
 
 apiClient.interceptors.request.use(
