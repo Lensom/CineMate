@@ -1,6 +1,7 @@
 
 import Template from "@/components/Template/Template";
 import { Providers } from "./Redux/provider";
+import { RootStyleRegistry } from './rootStyleRegistry';
 
 import "../styles/index.scss";
 
@@ -20,7 +21,7 @@ export default function RootLayout({
       <body>
         <Providers>
           <Template>
-            {children}
+            <RootStyleRegistry>{children}</RootStyleRegistry>
           </Template>
         </Providers>
       </body>

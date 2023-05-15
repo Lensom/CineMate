@@ -10,7 +10,7 @@ const apiClient = axios.create({
   baseURL: 'http://localhost:4444/',
 });
 
-const ApiMovieClient = axios.create({
+export const ApiMovieClient = axios.create({
   baseURL: 'https://api.themoviedb.org/3/'
 })
 

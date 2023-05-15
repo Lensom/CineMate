@@ -1,27 +1,27 @@
 "use client";
 
 import { Typography } from "antd";
-import { useDispatch, useSelector } from 'react-redux';
-import type { RootState } from "@/app/Redux/store";
+import { ApiMovieClient } from './Redux/sagas';
 
 import Slider from '@/components/Slider/Slider';
 
-import { popularMoviesRequest, ratingMoviesRequest } from "features/movies/moviesSlice";
-
 import styles from './page.module.scss';
-import { useEffect } from 'react';
 
 const { Title } = Typography;
 
-const Home = () => {
-  const dispatch = useDispatch();
+async function getPopulars() {
+  const { data } = await ApiMovieClient.get('movie/popular')
+  return data.results;
+}
 
-  const { populars, ratings } = useSelector((state: RootState) => state.movies);
+async function getRated() {
+  const { data } = await ApiMovieClient.get('movie/top_rated')
+  return data.results;
+}
 
-  useEffect(() => {
-    dispatch(popularMoviesRequest())
-    dispatch(ratingMoviesRequest())
-  }, [])
+const Home = async () => {
+  const ratings = await getRated();
+  const populars = await getPopulars();
 
   return (
     <main className={styles.main}>
