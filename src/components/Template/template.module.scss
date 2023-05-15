@@ -1,0 +1,40 @@
+@import '@/styles/var';
+
+.content {
+  height: auto;
+  &-inner {
+    padding: 24px;
+    min-height: 360px;
+    background: $black-secondary;
+  }
+}
+
+.main {
+  display: flex;
+  align-items: flex-start;
+  background: $black-main;
+}
+.wrapper {
+  height: auto;
+  width: calc(100% - 300px);
+  margin: 0 16px;
+}
+
+.sidebar {
+  max-width: 300px;
+  width: 100%;
+}
+
+.header {
+  padding: 24px;
+  background: $black-secondary;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer {
+  padding: 24px;
+  background: $black-secondary;
+  margin-top: 16px;
+}

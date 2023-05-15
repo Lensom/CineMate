@@ -1,5 +1,15 @@
 [
   {
+    "slug": "/",
+    "courseTitle": "Головна",
+    "breadcrumbs": [
+      {
+        "title": "Головна",
+        "url": "/"
+      }
+    ]
+  },
+  {
     "slug": "/registration",
     "courseTitle": "Реєстрація",
     "breadcrumbs": [

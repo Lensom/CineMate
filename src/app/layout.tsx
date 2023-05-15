@@ -3,12 +3,17 @@ import Template from "@/components/Template/Template";
 import { Providers } from "./Redux/provider";
 import { RootStyleRegistry } from './rootStyleRegistry';
 
+import { Montserrat } from "next/font/google";
+
 import "../styles/index.scss";
 
 export const metadata = {
   title: "CineMate",
   description: "CineMate is app for save you films",
 };
+
+
+const montserrat = Montserrat({ subsets: ["cyrillic"] });
 
 
 export default function RootLayout({
@@ -18,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ua">
-      <body>
+      <body className={montserrat.className}>
         <Providers>
           <Template>
             <RootStyleRegistry>{children}</RootStyleRegistry>

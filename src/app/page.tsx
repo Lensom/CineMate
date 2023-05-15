@@ -4,10 +4,11 @@ import { Typography } from "antd";
 import { ApiMovieClient } from './Redux/sagas';
 
 import Slider from '@/components/Slider/Slider';
+import Title from '@/components/Typography/Title';
 
 import styles from './page.module.scss';
 
-const { Title } = Typography;
+// const { Title } = Typography;
 
 async function getPopulars() {
   const { data } = await ApiMovieClient.get('movie/popular')
@@ -24,16 +25,16 @@ const Home = async () => {
   const populars = await getPopulars();
 
   return (
-    <main className={styles.main}>
+    <div className={styles.main}>
       <div className={styles.wrapper}>
-        <Title>Популярні:</Title>
+        <Title level={1}>Популярні:</Title>
         <Slider items={populars} />
       </div>
       <div className={styles.wrapper}>
-        <Title>Топ по рейтингу:</Title>
+        <Title level={1}>Топ по рейтингу:</Title>
         <Slider items={ratings} />
       </div>
-    </main>
+    </div>
   );
 };
 
