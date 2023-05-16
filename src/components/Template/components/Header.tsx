@@ -3,7 +3,7 @@ import type { RootState } from "@/app/Redux/store";
 
 import Search from './Search';
 
-import Button from '../../Buttons/Button';
+import Button from '@/components/Buttons/Button';
 
 import styles from '../template.module.scss'
 

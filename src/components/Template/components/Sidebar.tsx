@@ -8,17 +8,17 @@ import styles from '../template.module.scss'
 const Sidebar = () => {
   return (
     <aside className={styles.sidebar}>
-      <div className="logotype-wrapper">
-        <Link href="#">
+      <div className={styles["logotype-wrapper"]}>
+        <Link href="#" className={styles['logotype-link']}>
           <Image
             src="/logotype.svg"
-            width={120}
-            height={50}
+            width={240}
+            height={100}
             alt="Picture of the author"
           />
         </Link>
       </div>
-      <div className="menu-wrapper">
+      <div className={styles["menu-wrapper"]}>
         <Menu />
       </div>
     </aside>

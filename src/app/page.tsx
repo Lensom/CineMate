@@ -1,10 +1,9 @@
 "use client";
 
-import { Typography } from "antd";
 import { ApiMovieClient } from './Redux/sagas';
 
 import Slider from '@/components/Slider/Slider';
-import Title from '@/components/Typography/Title';
+import Text from '@/components/Typography/Text';
 
 import styles from './page.module.scss';
 
@@ -27,11 +26,11 @@ const Home = async () => {
   return (
     <div className={styles.main}>
       <div className={styles.wrapper}>
-        <Title level={1}>Популярні:</Title>
+        <Text level={1} isTitle>Популярні:</Text>
         <Slider items={populars} />
       </div>
       <div className={styles.wrapper}>
-        <Title level={1}>Топ по рейтингу:</Title>
+        <Text level={1} isTitle>Топ по рейтингу:</Text>
         <Slider items={ratings} />
       </div>
     </div>

@@ -9,7 +9,7 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'www.themoviedb.org',
         port: '',
-        pathname: '/t/p/w220_and_h330_face/**',
+        pathname: '/t/p/w440_and_h660_face/**',
       },
     ],
   },

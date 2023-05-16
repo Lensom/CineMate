@@ -24,4 +24,7 @@
   "[scss]": {
     "editor.defaultFormatter": "vscode.css-language-features"
   },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
 }

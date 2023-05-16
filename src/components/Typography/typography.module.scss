@@ -4,28 +4,38 @@
   font-weight: 500;
   margin: 0 0 15px;
   color: $white;
+
+  a {
+    font-size: inherit;
+  }
+
   &-1 {
     font-size: 38px;
     line-height: 44px;
   }
+
   &-2 {
-    font-size: 32px; 
+    font-size: 32px;
     line-height: 38px;
   }
+
   &-3 {
-    font-size: 26px; 
+    font-size: 26px;
     line-height: 32px;
   }
+
   &-4 {
-    font-size: 20px; 
+    font-size: 20px;
     line-height: 26px;
   }
+
   &-5 {
-    font-size: 18px; 
-    line-height: 24px;
-  }
-  &-6 {
-    font-size: 16px; 
+    font-size: 16px;
     line-height: 22px;
+  }
+
+  &-6 {
+    font-size: 12px;
+    line-height: 18px;
   }
 }

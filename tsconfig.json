@@ -40,7 +40,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "src/app/ErrorBoundary.jsx"  ],
   "exclude": [
     "node_modules"
   ]

@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import SliderItem from './components/SliderItem/SliderItem';
+import SliderItem from './components/Card/Card';
 
 import 'swiper/css';
 import styles from './slider.module.scss';
@@ -31,8 +31,6 @@ const Slider: FC<IProps> = ({ items }) => {
     <Swiper
       spaceBetween={20}
       slidesPerView={8}
-      onSlideChange={() => console.log('slide change')}
-      onSwiper={(swiper) => console.log(swiper)}
       className={styles.slider}
     >
       {items.map(({ id, title, poster_path, release_date, vote_average }) => {
