@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import type { RootState } from "@/app/Redux/store";
-import Link from "next/link";
+
+import Search from './Search';
 
 import Button from '../../Buttons/Button';
 
@@ -10,7 +11,7 @@ const Header = () => {
   const { isAuth } = useSelector((state: RootState) => state.auth);
 
   return <header className={styles.header}>
-    search
+    <Search />
     <Button link={isAuth ? '/profile' : '/login'}>
       {isAuth ? 'Профіль' : 'Увійти'}
     </Button>

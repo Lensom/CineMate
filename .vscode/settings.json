@@ -21,4 +21,7 @@
     "**/admin/node_modules": true
   },
   "editor.defaultFormatter": "vscode.typescript-language-features",
+  "[scss]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
+  },
 }

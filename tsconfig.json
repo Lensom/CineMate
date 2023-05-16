@@ -29,6 +29,9 @@
       ],
       "features/*": [
         "./src/app/Redux/Features/*"
+      ],
+      "images/*": [
+        "./src/images/*"
       ]
     }
   },
